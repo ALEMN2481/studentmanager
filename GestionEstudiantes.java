@@ -108,14 +108,14 @@ public class GestionEstudiantes {
                     break;
 
                 case 2:
-                    System.out.print("Ingrese ID del estudiante a eliminar: ");
+                    System.out.print("Por favor ingresee el ID del estudiante a eliminar: ");
                     id = scanner.nextLine();
                     admin.eliminarEstudiante(id);
                     System.out.println("Estudiante eliminado.");
                     break;
 
                 case 3:
-                    System.out.print("Ingrese ID del estudiante: ");
+                    System.out.print("Por favor ingrese el ID del estudiante: ");
                     id = scanner.nextLine();
                     Estudiante e = admin.buscarEstudiante(id);
                     if (e != null) {
@@ -127,7 +127,7 @@ public class GestionEstudiantes {
 
 
                 case 4:
-                    System.out.print("Ingrese ID del estudiante: ");
+                    System.out.print("Por favor ingrese el ID del estudiante: ");
                     id = scanner.nextLine();
                     e = admin.buscarEstudiante(id);
                     if (e != null) {
