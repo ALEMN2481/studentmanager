@@ -13,6 +13,7 @@ public class GestionEstudiantes {
             this.materia = materia;
             this.nota = nota;
         }
+
     }
 
     static class Estudiante {
@@ -47,6 +48,7 @@ public class GestionEstudiantes {
         public String toString() {
             return "ID: " + id + " | Nombre: " + nombre;
         }
+
     }
 
     static class Usuario {
@@ -76,6 +78,7 @@ public class GestionEstudiantes {
         void eliminarEstudiante(String id) {
             estudiantes.removeIf(e -> e.id.equals(id));
         }
+
     }
 
     public static void main(String[] args) {
@@ -84,7 +87,7 @@ public class GestionEstudiantes {
 
         while (true) {
 
-            System.out.println("\nMenú:");
+            System.out.println("\n Menú:");
             System.out.println("1. Agregar Estudiante");
             System.out.println("2. Eliminar Estudiante");
             System.out.println("3. Ver Promedio de Estudiante");
@@ -150,9 +153,9 @@ public class GestionEstudiantes {
                         System.out.print("Ingrese materia a eliminar: ");
                         String materia = scanner.nextLine();
                         e.eliminarCalificacion(materia);
-                        System.out.println("Calificación eliminada.");
+                        System.out.println(" Calificación eliminada.");
                     } else {
-                        System.out.println("Estudiante no encontrado.");
+                        System.out.println(" Estudiante no encontrado.");
                     }
                     break;
 
