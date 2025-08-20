@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -82,6 +83,7 @@ public class GestionEstudiantes {
         Usuario admin = new Usuario("Administrador", "admin001");
 
         while (true) {
+
             System.out.println("\nMenú:");
             System.out.println("1. Agregar Estudiante");
             System.out.println("2. Eliminar Estudiante");
@@ -91,9 +93,11 @@ public class GestionEstudiantes {
             System.out.println("6. Salir");
             System.out.print("Seleccione una opción: ");
             int opcion = scanner.nextInt();
-            scanner.nextLine();  // Limpiar buffer
+            scanner.nextLine();  
 
             switch (opcion) {
+
+
                 case 1:
                     System.out.print("Ingrese nombre del estudiante: ");
                     String nombre = scanner.nextLine();
@@ -120,6 +124,7 @@ public class GestionEstudiantes {
                         System.out.println("Estudiante no encontrado.");
                     }
                     break;
+
 
                 case 4:
                     System.out.print("Ingrese ID del estudiante: ");
@@ -159,6 +164,7 @@ public class GestionEstudiantes {
                 default:
                     System.out.println("Opción no válida.");
             }
+    
         }
     }
 }
