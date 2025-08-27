@@ -88,12 +88,19 @@ public class GestionEstudiantes {
         while (true) {
 
             System.out.println("\n Menú:");
+
             System.out.println("1. Agregar Estudiante");
+
             System.out.println("2. Eliminar Estudiante");
+
             System.out.println("3. Ver Promedio de Estudiante");
+
             System.out.println("4. Agregar Calificación");
+
             System.out.println("5. Eliminar Calificación");
+
             System.out.println("6. Salir");
+            
             System.out.print("Seleccione una opción: ");
             int opcion = scanner.nextInt();
             scanner.nextLine();  
