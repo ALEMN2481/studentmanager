@@ -11,20 +11,26 @@ public class SistemaGestionFlota {
             Bicicleta bici1 = new Bicicleta("Eléctrica");
 
             System.out.println("Bienvenido al Sistema de Gestión de Flota de Vehículos Urbanos");
-            System.out.print("Ingrese el tipo de usuario (Administrador/Normal): ");
-            String tipoUsuario = scanner.nextLine();
 
+            
+            System.out.print("Ingrese su ID de usuario: ");
+            String userId = scanner.nextLine();
+
+         
             Usuario usuario;
-            if (tipoUsuario.equalsIgnoreCase("Administrador")) {
+            if (userId.equals("admin123")) {
                 usuario = new UsuarioAdministrador("Admin1", "123456");
-            } else if (tipoUsuario.equalsIgnoreCase("Normal")) {
+                System.out.println("Ha ingresado como Administrador.");
+            } else if (userId.equals("user123")) {
                 usuario = new UsuarioNormal("User1", "654321");
+                System.out.println("Ha ingresado como Usuario Normal.");
             } else {
-                System.out.println("Tipo de usuario no válido. Saliendo...");
+                System.out.println("ID de usuario no válido. Saliendo...");
                 return;
             }
 
             while (true) {
+              
                 System.out.println("\n¿Qué desea hacer?");
                 System.out.println("1. Consultar vehículos");
                 if (usuario instanceof UsuarioAdministrador) {
@@ -33,10 +39,11 @@ public class SistemaGestionFlota {
                 System.out.println("0. Salir");
                 System.out.print("Seleccione una opción: ");
                 int opcion = scanner.nextInt();
-                scanner.nextLine();  // Limpiar el buffer del scanner
+                scanner.nextLine(); 
 
                 switch (opcion) {
                     case 1:
+             
                         System.out.println("\nConsultando vehículos...");
                         usuario.consultarVehiculo(autobus1);
                         usuario.consultarVehiculo(taxi1);
@@ -45,6 +52,7 @@ public class SistemaGestionFlota {
 
                     case 2:
                         if (usuario instanceof UsuarioAdministrador) {
+        
                             System.out.print("\nIngrese el tipo de vehículo a registrar (Autobús/Taxi/Bicicleta): ");
                             String tipoVehiculo = scanner.nextLine();
                             Vehiculo vehiculoRegistrado = null;
@@ -54,7 +62,7 @@ public class SistemaGestionFlota {
                                 String ruta = scanner.nextLine();
                                 System.out.print("Ingrese el número de pasajeros: ");
                                 int numPasajeros = scanner.nextInt();
-                                scanner.nextLine();  // Limpiar el buffer
+                                scanner.nextLine(); 
                                 vehiculoRegistrado = new Autobus(ruta, numPasajeros);
                             } else if (tipoVehiculo.equalsIgnoreCase("Taxi")) {
                                 System.out.print("Ingrese el nombre del conductor: ");
@@ -78,7 +86,8 @@ public class SistemaGestionFlota {
                         break;
 
                     case 0:
-                        System.out.println("Saliendo del sistema...");
+  
+                        System.out.println("Saliendo del sistema.");
                         return;
 
                     default:
@@ -87,7 +96,7 @@ public class SistemaGestionFlota {
             }
 
         } finally {
-            scanner.close();  // Cerrar el scanner independientemente de cómo salga el programa
+            scanner.close(); 
         }
     }
 }
