@@ -100,7 +100,7 @@ public class GestionEstudiantes {
             System.out.println("5. Eliminar Calificación");
 
             System.out.println("6. Salir");
-            
+
             System.out.print("Seleccione una opción: ");
             int opcion = scanner.nextInt();
             scanner.nextLine();  
