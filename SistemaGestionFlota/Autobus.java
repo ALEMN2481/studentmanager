@@ -5,8 +5,8 @@ public class Autobus extends Vehiculo {
     private int numPasajeros;
     private double velocidadPromedio; 
 
-    public Autobus(String ruta, int numPasajeros, double velocidadPromedio) {
-        super("Autobús");
+    public Autobus(String tipo, String ruta, int numPasajeros, double velocidadPromedio) {
+        super(tipo); 
         this.ruta = ruta;
         this.numPasajeros = numPasajeros;
         this.velocidadPromedio = velocidadPromedio;
