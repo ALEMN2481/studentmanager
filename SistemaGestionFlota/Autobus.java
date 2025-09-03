@@ -9,10 +9,9 @@ public class Autobus extends Vehiculo {
         super("Autobús");
         this.ruta = ruta;
         this.numPasajeros = numPasajeros;
-        this.velocidadPromedio = velocidadPromedio; 
+        this.velocidadPromedio = velocidadPromedio;
     }
 
- 
     public double getVelocidadPromedio() {
         return velocidadPromedio;
     }
@@ -21,10 +20,8 @@ public class Autobus extends Vehiculo {
         this.velocidadPromedio = velocidadPromedio;
     }
 
-   
     @Override
     public String mostrarInfo() {
         return "Ruta: " + ruta + ", Pasajeros actuales: " + numPasajeros + ", Velocidad Promedio: " + velocidadPromedio + " km/h, Estado: " + getEstado();
     }
 }
-

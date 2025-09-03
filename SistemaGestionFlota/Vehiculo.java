@@ -6,7 +6,7 @@ public abstract class Vehiculo {
     
     public Vehiculo(String tipo) {
         this.tipo = tipo;
-        this.estado = "detenido"; // Estado inicial
+        this.estado = "detenido"; 
     }
     public String getEstado() {
         return estado;

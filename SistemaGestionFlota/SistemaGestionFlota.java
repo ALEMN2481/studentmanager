@@ -44,7 +44,7 @@ public class SistemaGestionFlota {
                 switch (opcion) {
                     case 1:
              
-                        System.out.println("\nConsultando vehículos...");
+                        System.out.println("\nConsultando vehículos..");
                         usuario.consultarVehiculo(autobus1);
                         usuario.consultarVehiculo(taxi1);
                         usuario.consultarVehiculo(bici1);
@@ -63,7 +63,11 @@ public class SistemaGestionFlota {
                                 System.out.print("Ingrese el número de pasajeros: ");
                                 int numPasajeros = scanner.nextInt();
                                 scanner.nextLine(); 
-                                vehiculoRegistrado = new Autobus(ruta, numPasajeros);
+                                System.out.print("Ingrese la velocidad promedio (km/h): ");
+                                double velocidadPromedio = scanner.nextDouble();
+                                scanner.nextLine();
+                                vehiculoRegistrado = new Autobus(ruta, numPasajeros, velocidadPromedio);
+                                
                             } else if (tipoVehiculo.equalsIgnoreCase("Taxi")) {
                                 System.out.print("Ingrese el nombre del conductor: ");
                                 String conductor = scanner.nextLine();
