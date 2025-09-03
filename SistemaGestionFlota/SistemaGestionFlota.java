@@ -1,16 +1,17 @@
 package SistemaGestionFlota;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class SistemaGestionFlota {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        try {
-            Autobus autobus1 = new Autobus("Ruta A", 40);
-            Taxi taxi1 = new Taxi("Juan Perez", "Tarifa 1");
-            Bicicleta bici1 = new Bicicleta("Eléctrica");
+     
+        ArrayList<Vehiculo> vehiculosRegistrados = new ArrayList<>();
 
+        try {
             System.out.println("Bienvenido al Sistema de Gestión de Flota de Vehículos Urbanos");
+
             System.out.print("Ingrese el tipo de usuario (Administrador/Normal): ");
             String tipoUsuario = scanner.nextLine();
 
@@ -33,14 +34,19 @@ public class SistemaGestionFlota {
                 System.out.println("0. Salir");
                 System.out.print("Seleccione una opción: ");
                 int opcion = scanner.nextInt();
-                scanner.nextLine();  
+                scanner.nextLine(); 
 
                 switch (opcion) {
                     case 1:
+        
                         System.out.println("\nConsultando vehículos...");
-                        usuario.consultarVehiculo(autobus1);
-                        usuario.consultarVehiculo(taxi1);
-                        usuario.consultarVehiculo(bici1);
+                        if (vehiculosRegistrados.isEmpty()) {
+                            System.out.println("No hay vehículos registrados.");
+                        } else {
+                            for (Vehiculo vehiculo : vehiculosRegistrados) {
+                                System.out.println(vehiculo.mostrarInfo());
+                            }
+                        }
                         break;
 
                     case 2:
@@ -55,7 +61,10 @@ public class SistemaGestionFlota {
                                 System.out.print("Ingrese el número de pasajeros: ");
                                 int numPasajeros = scanner.nextInt();
                                 scanner.nextLine();
-                                vehiculoRegistrado = new Autobus(ruta, numPasajeros);
+                                System.out.print("Ingrese la velocidad promedio (km/h): ");
+                                double velocidadPromedio = scanner.nextDouble();
+                                scanner.nextLine();
+                                vehiculoRegistrado = new Autobus(ruta, numPasajeros, velocidadPromedio);
                             } else if (tipoVehiculo.equalsIgnoreCase("Taxi")) {
                                 System.out.print("Ingrese el nombre del conductor: ");
                                 String conductor = scanner.nextLine();
@@ -71,7 +80,10 @@ public class SistemaGestionFlota {
                                 break;
                             }
 
+                 
+                            vehiculosRegistrados.add(vehiculoRegistrado);
                             usuario.registrarVehiculo(vehiculoRegistrado);
+                            System.out.println("Vehículo registrado exitosamente.");
                         } else {
                             System.out.println("No tiene permisos para registrar vehículos.");
                         }

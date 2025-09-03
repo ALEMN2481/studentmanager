@@ -1,16 +1,16 @@
 package SistemaGestionFlota;
 
 public class Bicicleta extends Vehiculo {
-    private String tipoBicicleta;
-    
-    public Bicicleta(String tipoBicicleta) {
+    private String tipoBici;
+
+    public Bicicleta(String tipoBici) {
         super("Bicicleta");
-        this.tipoBicicleta = tipoBicicleta;
+        this.tipoBici = tipoBici;
     }
-    
+
     @Override
     public String mostrarInfo() {
-        return "Tipo de bicicleta: " + tipoBicicleta + ", Estado: " + getEstado();
+        return "Tipo de bicicleta: " + tipoBici + ", Estado: " + getEstado();
     }
 }
 

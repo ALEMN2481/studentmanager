@@ -1,6 +1,6 @@
 package SistemaGestionFlota;
 
-public abstract class Vehiculo {
+public class Vehiculo {
     protected String estado;
     protected String tipo;
     
@@ -14,6 +14,8 @@ public abstract class Vehiculo {
     public void cambiarEstado(String nuevoEstado) {
         this.estado = nuevoEstado;
     }
-    public abstract String mostrarInfo();
+    public String mostrarInfo() {
+        return "Tipo: " + tipo + ", Estado: " + estado;
+    }
 }
 
