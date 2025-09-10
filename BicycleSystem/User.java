@@ -21,20 +21,15 @@ public class User {
 
     public void setNombre(String nombre) { this.nombre = nombre; }
 
-    public void setTipo(String tipo) {
+      public void setTipo(String tipo) {
         if (tipo == null) throw new IllegalArgumentException("Tipo requerido");
         String t = tipo.trim().toLowerCase();
-        switch (t) {
-            case "1":
-            case "estudiante":
-                this.tipo = TIPO_ESTUDIANTE;
-                break;
-            case "2":
-            case "empleado":
-                this.tipo = TIPO_EMPLEADO;
-                break;
-            default:
-                throw new IllegalArgumentException("Tipo inválido (use Estudiante o Empleado).");
+        if (t.equals("estudiante")) {
+            this.tipo = TIPO_ESTUDIANTE;
+        } else if (t.equals("empleado")) {
+            this.tipo = TIPO_EMPLEADO;
+        } else {
+            throw new IllegalArgumentException("Tipo inválido (use Estudiante o Empleado).");
         }
     }
 
