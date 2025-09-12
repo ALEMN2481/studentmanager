@@ -1,10 +1,10 @@
 package BicycleSystem;
 
 public class ElectricBike extends Bicycle {
-    private int batteryLevel = 100;
+    private int batteryLevel;
 
-    public ElectricBike(int ID, String Type, String Status, int batteryLevel) {
-        super(ID, Type, Status);
+    public ElectricBike(int id, String type, String status, int batteryLevel) {
+        super(id, type, status);
         this.batteryLevel = batteryLevel;
     }
 
@@ -13,27 +13,31 @@ public class ElectricBike extends Bicycle {
     }
 
     public void setBatteryLevel(int batteryLevel) {
-        this.batteryLevel = batteryLevel;
+        if (batteryLevel < 0) this.batteryLevel = 0;
+        else if (batteryLevel > 100) this.batteryLevel = 100;
+        else this.batteryLevel = batteryLevel;
     }
-    
-        public int OpBatteryLevel() {
-        String Status = getStatus();
-        if (Status.equals("Prestada")) {
-            int[] consumption = {10, 15, 20};
-            int randomIndex = (int)(Math.random() * consumption.length);
-            batteryLevel = batteryLevel - consumption[randomIndex];
-            if (batteryLevel <= 0) {
-                batteryLevel = 0;
-                setStatus("No disponible");
-                System.out.println("La bicicleta debe ser recargada.");
-            }
+
+    @Override
+    public void devolver() {
+        super.devolver(); // vuelve a disponible
+        int[] consumption = {10, 15, 20};
+        int randomIndex = (int)(Math.random() * consumption.length);
+        setBatteryLevel(batteryLevel - consumption[randomIndex]);
+
+        if (batteryLevel == 0) {
+            setStatus(Bicycle.STATUS_NO_DISPONIBLE);
+            System.out.println("La bicicleta debe ser recargada.");
         }
-        return batteryLevel;
     }
 
-    public void ChargeBattery() {
-        batteryLevel = 100;
+    public void chargeBattery() {
+        setBatteryLevel(100);
+        System.out.println("La bicicleta fue recargada al 100%.");
     }
 
-
+    @Override
+    public String toString() {
+        return "[ID: " + getId() + "] Eléctrica - " + getStatus() + " (Batería: " + batteryLevel + "%)";
+    }
 }
