@@ -19,20 +19,35 @@ public class ElectricBike extends Bicycle {
     }
 
     @Override
+    public boolean prestar() {
+        if (super.prestar()) {
+            // Consumir batería al prestar
+            int[] consumption = {10, 15, 20};
+            int randomIndex = (int)(Math.random() * consumption.length);
+            setBatteryLevel(batteryLevel - consumption[randomIndex]);
+
+            if (batteryLevel == 0) {
+                setStatus(Bicycle.STATUS_NO_DISPONIBLE);
+                System.out.println("La bicicleta quedó sin batería y debe ser recargada.");
+                return false;
+            }
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public void devolver() {
         super.devolver(); // vuelve a disponible
-        int[] consumption = {10, 15, 20};
-        int randomIndex = (int)(Math.random() * consumption.length);
-        setBatteryLevel(batteryLevel - consumption[randomIndex]);
-
         if (batteryLevel == 0) {
             setStatus(Bicycle.STATUS_NO_DISPONIBLE);
-            System.out.println("La bicicleta debe ser recargada.");
+            System.out.println("La bicicleta está descargada y no puede usarse hasta recargarla.");
         }
     }
 
     public void chargeBattery() {
         setBatteryLevel(100);
+        setStatus(Bicycle.STATUS_DISPONIBLE);
         System.out.println("La bicicleta fue recargada al 100%.");
     }
 
