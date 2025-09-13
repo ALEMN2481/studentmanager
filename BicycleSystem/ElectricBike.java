@@ -21,7 +21,6 @@ public class ElectricBike extends Bicycle {
     @Override
     public boolean prestar() {
         if (super.prestar()) {
-            // Consumir batería al prestar
             int[] consumption = {10, 15, 20};
             int randomIndex = (int)(Math.random() * consumption.length);
             setBatteryLevel(batteryLevel - consumption[randomIndex]);
@@ -38,7 +37,7 @@ public class ElectricBike extends Bicycle {
 
     @Override
     public void devolver() {
-        super.devolver(); // vuelve a disponible
+        super.devolver();
         if (batteryLevel == 0) {
             setStatus(Bicycle.STATUS_NO_DISPONIBLE);
             System.out.println("La bicicleta está descargada y no puede usarse hasta recargarla.");
@@ -46,9 +45,26 @@ public class ElectricBike extends Bicycle {
     }
 
     public void chargeBattery() {
+        int steps = 20;
+        System.out.println("Cargando batería:");
+        for (int i = 1; i <= steps; i++) {
+            int percent = i * 100 / steps;
+            StringBuilder bar = new StringBuilder("[");
+            for (int j = 0; j < i; j++) bar.append("=");
+            for (int j = i; j < steps; j++) bar.append(" ");
+            bar.append("] ").append(percent).append("%");
+            System.out.print("\r" + bar.toString());
+            System.out.flush();
+            try {
+                Thread.sleep(80); // Simula el tiempo de carga
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
         setBatteryLevel(100);
         setStatus(Bicycle.STATUS_DISPONIBLE);
-        System.out.println("La bicicleta fue recargada al 100%.");
+        System.out.print("\r[====================] 100%\n");
+        System.out.println("La bicicleta fue recargada al 100%.\n");
     }
 
     @Override
