@@ -77,15 +77,15 @@ public class BicycleManagement {
     void registerBicycle() {
         System.out.println("\nRegistrar bicicleta");
 
-        System.out.print("ID de la bicicleta: ");
+        System.out.print("ID único: ");
             int id = scanner.nextInt();
-            scanner.nextLine();
+                scanner.nextLine();
 
-            if (bicycleIdExists(id)) {
-                System.out.println("Ya existe una bicicleta con ID " + id + ". Intenta con otro.\n");
-                return;
-            } 
-        
+        if (bicycleIdExists(id)) {
+            System.out.println("Ya existe una bicicleta con ID " + id + ". Intenta con otro.\n");
+            return;
+        }
+
             String tipo = "";
         while (true) {
             System.out.print("Tipo (Mecánica/Eléctrica): ");
@@ -198,36 +198,36 @@ public class BicycleManagement {
     }
 
     void returnBicycle() {
-    System.out.println("\nDevolver bicicleta");
+        System.out.println("\nDevolver bicicleta");
 
-    System.out.print("Documento del usuario que devuelve: ");
-    String doc = scanner.nextLine();
-    User user = null;
-    for (User u : users) {
-        if (u.getDocumento().equals(doc)) { user = u; break; }
-    }
-    if (user == null) {
-        System.out.println("Usuario no encontrado.\n");
-        return;
-    }
+        System.out.print("Documento del usuario que devuelve: ");
+        String doc = scanner.nextLine();
+        User user = null;
+        for (User u : users) {
+            if (u.getDocumento().equals(doc)) { user = u; break; }
+        }
+        if (user == null) {
+         System.out.println("Usuario no encontrado.\n");
+         return;
+        }
+        System.out.print("ID de bicicleta a devolver: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
 
-    System.out.print("ID de bicicleta a devolver: ");
-    int id = scanner.nextInt();
-    scanner.nextLine();
-
-    Bicycle bike = null;
-    for (Bicycle b : bicycles) {
-        if (b.getId() == id) { bike = b; break; }
-    }
-    if (bike == null) {
-        System.out.println("Bicicleta no encontrada.\n");
-        return;
-    }
+        Bicycle bike = null;
+        for (Bicycle b : bicycles) {
+            if (b.getId() == id) { bike = b; break; }
+        }
+        if (bike == null) {
+            System.out.println("Bicicleta no encontrada.\n");
+            return;
+        }   
 
     bike.devolver();
     history.add("Devolución: " + user.getNombre() + " devolvió " + bike);
     System.out.println("Bicicleta devuelta: " + bike + "\n");
 }
+
 
 
     void viewHistory() {
@@ -259,11 +259,9 @@ public class BicycleManagement {
     }
 
     private boolean bicycleIdExists(int id) {
-        for (Bicycle b : bicycles) {
-         if (b.getId() == id) return true;
+        for (Bicycle b : bicycles) if (b.getId() == id) return true;
+        return false;
     }
-    return false;
-}
 
     public static void main(String[] args) {
         BicycleManagement system = new BicycleManagement();

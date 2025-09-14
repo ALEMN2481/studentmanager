@@ -22,26 +22,31 @@ public final class ElectricBike extends Bicycle {
     }
 
     @Override
-    public boolean prestar() {
-        if (batteryLevel <= 0) {
-            System.out.println("La bicicleta está descargada y debe ser recargada.");
+        public boolean prestar() {
+        if (getBatteryLevel() <= 0) {
+            System.out.println("❌ No se puede prestar: batería descargada (0%). Recarga necesaria.");
             return false;
-        }
-        return super.prestar();
     }
+    
+        if (getBatteryLevel() < 15) {
+            System.out.println("Batería baja (" + getBatteryLevel() + "%). Considera recargar pronto.");
+    }   
+    return super.prestar();
+}
 
     @Override
     public void devolver() {
-        super.devolver();
+    super.devolver();
         int[] consumption = {10, 15, 20};
         int randomIndex = (int)(Math.random() * consumption.length);
-        setBatteryLevel(batteryLevel - consumption[randomIndex]);
+        setBatteryLevel(getBatteryLevel() - consumption[randomIndex]);
 
-        if (batteryLevel == 0) {
-            setStatus(Bicycle.STATUS_NO_DISPONIBLE);
-            System.out.println("La bicicleta quedó descargada y no puede prestarse hasta recargarla.");
-        }
+    if (getBatteryLevel() == 0) {
+        setStatus(Bicycle.STATUS_NO_DISPONIBLE);
+        System.out.println("La bicicleta quedó descargada y no puede prestarse hasta recargarla.");
     }
+}
+
 
     public void chargeBattery() {
         final int steps = 20;
