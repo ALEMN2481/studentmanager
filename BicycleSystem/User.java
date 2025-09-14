@@ -1,8 +1,8 @@
 package BicycleSystem;
 
-public class User {
+public final class User {
     private String nombre;
-    private String documento;
+    private final String documento;
     private String tipo; // Solo "Estudiante" o "Empleado"
 
     public static final String TIPO_ESTUDIANTE = "Estudiante";
@@ -24,12 +24,15 @@ public class User {
     public void setTipo(String tipo) {
         if (tipo == null) throw new IllegalArgumentException("Tipo requerido");
         String t = tipo.trim().toLowerCase();
-        if (t.equals("estudiante")) {
-            this.tipo = TIPO_ESTUDIANTE;
-        } else if (t.equals("empleado")) {
-            this.tipo = TIPO_EMPLEADO;
-        } else {
-            throw new IllegalArgumentException("Tipo inválido (use Estudiante o Empleado).");
+        switch (t) {
+            case "estudiante":
+                this.tipo = TIPO_ESTUDIANTE;
+                break;
+            case "empleado":
+                this.tipo = TIPO_EMPLEADO;
+                break;
+            default:
+                throw new IllegalArgumentException("Tipo inválido (use Estudiante o Empleado).");
         }
     }
 
