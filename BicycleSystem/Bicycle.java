@@ -19,7 +19,6 @@ public class Bicycle {
     public String getType() { return type; }
     public String getStatus() { return status; }
 
-    // protegido o público según prefieras
     protected void setType(String type) { this.type = type; }
     public void setStatus(String status) { this.status = status; }
 
