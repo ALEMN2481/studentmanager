@@ -1,13 +1,14 @@
 package BicycleSystem;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class BicycleManagement {
-    ArrayList<User> users = new ArrayList<User>();
-    ArrayList<Bicycle> bicycles = new ArrayList<Bicycle>();
-    ArrayList<String> history = new ArrayList<String>();
-    Scanner scanner = new Scanner(System.in);
+        private final List<User> users = new ArrayList<>();
+    private final List<Bicycle> bicycles = new ArrayList<>();
+    private final List<String> history = new ArrayList<>();
+    private final Scanner scanner = new Scanner(System.in);
 
     void start() {
         int option;
@@ -16,38 +17,17 @@ public class BicycleManagement {
             option = scanner.nextInt();
             scanner.nextLine();
             switch (option) {
-                case 1:
-                    registerUser();
-                    break;
-                case 2:
-                    registerBicycle();
-                    break;
-                case 3:
-                    listUsers();
-                    break;
-                case 4:
-                    listBicycles();
-                    break;
-                case 5:
-                    listAvailableBicycles();
-                    break;
-                case 6:
-                    borrowBicycle();
-                    break;
-                case 7:
-                    returnBicycle();
-                    break;
-                case 8:
-                    viewHistory();
-                    break;
-                case 9:
-                    rechargeElectricBike();
-                    break;
-                case 0:
-                    System.out.println("\nSaliendo del sistema...\n");
-                    break;
-                default:
-                    System.out.println("\nOpción inválida.\n");
+                case 1 -> registerUser();
+                case 2 -> registerBicycle();
+                case 3 -> listUsers();
+                case 4 -> listBicycles();
+                case 5 -> listAvailableBicycles();
+                case 6 -> borrowBicycle();
+                case 7 -> returnBicycle();
+                case 8 -> viewHistory();
+                case 9 -> rechargeElectricBike();
+                case 0 -> System.out.println("\nSaliendo del sistema...\n");
+                default -> System.out.println("\nOpción inválida.\n");
             }
         } while (option != 0);
     }
@@ -62,10 +42,10 @@ public class BicycleManagement {
         System.out.println("------------------------------------------");
         System.out.println(" 1. Registrar usuario");
         System.out.println(" 2. Registrar bicicleta");
-        System.out.println(" 3. Listar usuarios");
-        System.out.println(" 4. Listar bicicletas");
-        System.out.println(" 5. Listar bicicletas disponibles");
-        System.out.println(" 6. Prestar bicicleta");
+        System.out.println(" 3. Lista usuarios");
+        System.out.println(" 4. Lista bicicletas");
+        System.out.println(" 5. Lista bicicletas disponibles");
+        System.out.println(" 6. Presta bicicleta");
         System.out.println(" 7. Devolver bicicleta");
         System.out.println(" 8. Ver historial");
         System.out.println(" 9. Recargar bicicleta eléctrica");
@@ -97,11 +77,16 @@ public class BicycleManagement {
     void registerBicycle() {
         System.out.println("\nRegistrar bicicleta");
 
-        System.out.print("ID único: ");
-        int id = scanner.nextInt();
-        scanner.nextLine();
+        System.out.print("ID de la bicicleta: ");
+            int id = scanner.nextInt();
+            scanner.nextLine();
 
-        String tipo = "";
+            if (bicycleIdExists(id)) {
+                System.out.println("Ya existe una bicicleta con ID " + id + ". Intenta con otro.\n");
+                return;
+            } 
+        
+            String tipo = "";
         while (true) {
             System.out.print("Tipo (Mecánica/Eléctrica): ");
             tipo = scanner.nextLine().trim().toLowerCase();
@@ -213,28 +198,37 @@ public class BicycleManagement {
     }
 
     void returnBicycle() {
-        System.out.println("\nDevolver bicicleta");
-        System.out.print("ID de bicicleta a devolver: ");
-        int id = scanner.nextInt();
-        scanner.nextLine();
+    System.out.println("\nDevolver bicicleta");
 
-        Bicycle bike = null;
-        for (Bicycle b : bicycles) {
-            if (b.getId() == id) {
-                bike = b;
-                break;
-            }
-        }
-
-        if (bike == null) {
-            System.out.println("Bicicleta no encontrada.\n");
-            return;
-        }
-
-        bike.devolver();
-        history.add("Devolución: Bicicleta devuelta " + bike);
-        System.out.println("Bicicleta devuelta: " + bike + "\n");
+    System.out.print("Documento del usuario que devuelve: ");
+    String doc = scanner.nextLine();
+    User user = null;
+    for (User u : users) {
+        if (u.getDocumento().equals(doc)) { user = u; break; }
     }
+    if (user == null) {
+        System.out.println("Usuario no encontrado.\n");
+        return;
+    }
+
+    System.out.print("ID de bicicleta a devolver: ");
+    int id = scanner.nextInt();
+    scanner.nextLine();
+
+    Bicycle bike = null;
+    for (Bicycle b : bicycles) {
+        if (b.getId() == id) { bike = b; break; }
+    }
+    if (bike == null) {
+        System.out.println("Bicicleta no encontrada.\n");
+        return;
+    }
+
+    bike.devolver();
+    history.add("Devolución: " + user.getNombre() + " devolvió " + bike);
+    System.out.println("Bicicleta devuelta: " + bike + "\n");
+}
+
 
     void viewHistory() {
         System.out.println("\nHistorial de préstamos/devoluciones");
@@ -263,6 +257,13 @@ public class BicycleManagement {
         }
         System.out.println("No se encontró una bicicleta eléctrica con ese ID.\n");
     }
+
+    private boolean bicycleIdExists(int id) {
+        for (Bicycle b : bicycles) {
+         if (b.getId() == id) return true;
+    }
+    return false;
+}
 
     public static void main(String[] args) {
         BicycleManagement system = new BicycleManagement();
