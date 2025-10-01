@@ -33,12 +33,10 @@ public class TrainerGym extends Coach {
         this.bonoEjercicio = bonoEjercicio;
     }
 
-    @Override
     public double calcularSalario() {
         return salarioBase + bonoEjercicio;
     }
 
-    @Override
     public String toString() {
         return super.toString() + ", Tipo de Entrenamiento=" + tipoEntrenamientoString + ", Salario="
                 + calcularSalario();
