@@ -29,12 +29,10 @@ public class NutritionalGym extends CoachCntrl {
         this.bonoNutricionista = bonoNutricionista;
     }
 
-    @Override
     public double calcularSalario() {
         return salarioBase + bonoNutricionista;
     }
 
-    @Override
     public String toString() {
         return super.toString() + ", Especialidad=" + especialidad + ", Salario=" + calcularSalario();
     }
