@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class MainGym {
-    private final List<TrainerGym> trainers = new ArrayList<>();
-    private final Scanner scanner = new Scanner(System.in);
+public abstract class MainGym {
+    protected final List<TrainerGym> trainers = new ArrayList<>();
+    protected final Scanner scanner = new Scanner(System.in);
 
     public void start() {
         int option;
@@ -80,10 +80,5 @@ public class MainGym {
         } else {
             System.out.println("Entrenador no encontrado.");
         }
-    }
-
-    public static void main(String[] args) {
-        MainGym system = new MainGym();
-        system.start();
     }
 }
