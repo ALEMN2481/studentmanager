@@ -1,6 +1,6 @@
 package GymControl;
 
-public class TrainerGym extends CoachCntrl {
+public class TrainerGym extends Coach {
     private String tipoEntrenamientoString;
     private double salarioBase;
     private double bonoEjercicio;
@@ -33,12 +33,10 @@ public class TrainerGym extends CoachCntrl {
         this.bonoEjercicio = bonoEjercicio;
     }
 
-    @Override
     public double calcularSalario() {
         return salarioBase + bonoEjercicio;
     }
 
-    @Override
     public String toString() {
         return super.toString() + ", Tipo de Entrenamiento=" + tipoEntrenamientoString + ", Salario="
                 + calcularSalario();
