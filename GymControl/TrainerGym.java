@@ -1,6 +1,6 @@
 package GymControl;
 
-public class TrainerGym extends CoachCntrl {
+public class TrainerGym extends Coach {
     private String tipoEntrenamientoString;
     private double salarioBase;
     private double bonoEjercicio;
